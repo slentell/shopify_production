@@ -17,18 +17,19 @@ def inventory_list(request):
     }
     return render(request, 'inventory_list.html', data)
 
-
+## Typically I would protect the api key in .env file - however not working with replit so hardcoding the api key.
 def _get_city_info(location):
-    city_info =  req.get(f'http://api.openweathermap.org/geo/1.0/direct?q={location}&limit=5&appid={api_key}')
+    city_info =  req.get(f'http://api.openweathermap.org/geo/1.0/direct?q={location}&limit=5&appid=8d168cd603dfb4f7e2e82404a4970677')
     data = city_info.json()
     latitude = data[1]['lat']
-    longitude = data[1]['lon'] 
+    longitude = data[1]['lon']
+ 
     return _get_weather(latitude, longitude)
     
 
 
 def _get_weather(latitude, longitude):
-    city_weather = req.get(f'https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={api_key}')
+    city_weather = req.get(f'https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid=8d168cd603dfb4f7e2e82404a4970677')
     data = city_weather.json()
     weather = data['weather'][0]['description']
     return weather
