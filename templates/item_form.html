@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block nav %}
+<div class="jumbotron text-center" style="background-color: #52688F;">
+  <h1>Inventory</h1>
+<nav class="navbar" style="border-bottom: 2px solid #52688F">
+  <div class="container-fluid">
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'inventory_list' %}">Go Back</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'deleted_items' %}">Deleted Items</a>
+  </li>
+ 
+</ul>
+</div>
+</nav>
+{% endblock %}
+{% block content %}
+
+<h2>Item</h2>
+<div class="container">
+<form method = "POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class='row'>
+    <div class="col-6">
+      {{ form.name|as_crispy_field }}
+      </div>
+    <div class="col-6">
+      {{ form.price|as_crispy_field }}
+    </div>
+    </div>
+    {{ form.description|as_crispy_field }}
+    <div class="row">
+      <div class="col-6">
+        {{ form.quantity|as_crispy_field }}
+      </div>
+      <div class="col-6">
+        {{ form.storage_location|as_crispy_field }}
+      </div>
+      
+    </div>
+    </div>
+  <button type="submit">Submit</button>
+  </form>
+</div>
+ 
+
+{% endblock %}

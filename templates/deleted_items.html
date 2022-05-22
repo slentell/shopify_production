@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block nav %}
+<div class="jumbotron text-center" style="background-color: #52688F;">
+  <h1>Deleted Items</h1>
+<nav class="navbar" style="border-bottom: 2px solid #52688F">
+  <div class="container-fluid">
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'new' %}">Add Inventory Item</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'inventory_list' %}">Go Back</a>
+  </li>
+ 
+</ul>
+</div>
+</nav>
+{% endblock %}
+
+{% block content %}
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Notes</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Restore</th>
+        <th scope="col">Delete</th>
+             </tr>
+    </thead>
+       <tbody>
+        {% for item in items %}
+            {% if item.deleted %}
+            
+            <tr>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.deletion_comment}}</td>
+                <td>{{item.quantity}}</td>
+                <td><a href="{% url 'restore_item' inventory_id=item.pk %}">RESTORE</a></td>
+                <td><a href="{% url 'true_delete_item' inventory_id=item.pk %}">DELETE</a></td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+  </table>
+  {% endblock %}

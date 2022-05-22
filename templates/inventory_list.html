@@ -1,0 +1,62 @@
+
+{% extends 'base.html' %}
+{% block nav %}
+<div class="jumbotron text-center" style="background-color: #52688F;">
+  <h1>Inventory</h1>
+<nav class="navbar" style="border-bottom: 2px solid #52688F">
+  <div class="container-fluid">
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'new' %}">Add Inventory Item</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'deleted_items' %}">Deleted Items</a>
+  </li>
+ 
+</ul>
+</div>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="container">
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Storage City</th>
+        <th scope="col">Weather</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+  {% for item in items %}
+      {% if not item.deleted%}
+        
+  <tr>
+    <th scope="row">{{item.id}}</th>
+    <td>{{item.name}}</td>
+    <td>{{item.description}}</td>
+    <td>{{item.price}}</td>
+    <td>{{item.quantity}}</td>
+    <td>{{item.storage_location}}</td> 
+    <td>{{item.weather}}</td>
+   
+    <td><a href="{% url 'edit_item' inventory_id=item.pk %}">EDIT</a></td>
+    <td><a href="{% url 'temp_delete' inventory_id=item.pk %}">DELETE</a></td>
+    
+  </tr>
+  {% endif %}
+  {% endfor %}
+  
+</ul>
+  </div>
+
+</div>
+  {% endblock %}

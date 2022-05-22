@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="columns mt-6 pt-6 ml-6 mr-6">
+    <div class="column"></div>
+    <div class="column">
+        <form class="box" method="POST" enctype="multipart/form-data" nonvalidate>
+            {% csrf_token %}
+            <h1 class="title">Are you sure you want to restore this item?</h1>
+            <p class="small">This will return item to inventory list.</p>
+            <button type="submit" class="save btn btn-secondary">Restore</button>
+        </form>
+    </div>
+    <div class="column"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="columns mt-6 pt-6 ml-6 mr-6">
+    
+    <div >
+        <form class="box" method="POST" enctype="multipart/form-data" nonvalidate>
+            {% csrf_token %}
+            <h1 class="title">Delete this item?</h1>
+            <p class="small">This will send the item to deleted items.</p>
+                <div class="field mb-6">
+                    <div class="control">
+                        {{ form.deletion_comment|as_crispy_field }}
+                    </div>
+
+                        <button type="submit" class="save btn btn-secondary">Delete</button>
+        </form>
+    </div>
+    
+</div>
+{% endblock %}
