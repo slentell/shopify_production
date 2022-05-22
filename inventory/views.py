@@ -3,7 +3,7 @@ from .models import Inventory
 from .forms import  ItemForm, DeleteForm
 import requests as req
 import os
-api_key = os.environ.get('SECRET_KEY')
+
 # Create your views here.
 def get_item(inventory_id):
     return Inventory.objects.get(inventory_id)

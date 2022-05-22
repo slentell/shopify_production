@@ -4,7 +4,6 @@ certifi==2022.5.18.1
 charset-normalizer==2.0.12
 Django==4.0.4
 django-crispy-forms==1.14.0
-django-environ==0.8.1
 django-money==2.1.1
 idna==3.3
 py-moneyed==1.2
